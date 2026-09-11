@@ -1,0 +1,197 @@
+.footer {
+  background: var(--gray-900);
+  color: var(--gray-400);
+  position: relative;
+}
+
+.colorBar {
+  display: flex;
+  height: 4px;
+}
+
+.colorBar span {
+  flex: 1;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: var(--space-12);
+  padding-block: var(--space-16);
+}
+
+/* ── Brand Column ──────────────────────────────────────────────── */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.brandLogo {
+  display: flex;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--white);
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--google-blue);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.brandDesc {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  /* WCAG fix: var(--gray-600) on gray-900 fails AA — use gray-500 */
+  color: var(--gray-500);
+  max-width: 280px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gray-800);
+  border-radius: var(--radius-md);
+  /* WCAG fix: gray-600 on gray-800 fails — use gray-400 */
+  color: var(--gray-400);
+  transition: all var(--transition-fast);
+}
+
+.socialLink:hover {
+  background: var(--google-blue);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* ── Link Columns ──────────────────────────────────────────────── */
+.linkCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.colTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--white);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footerLink {
+  display: block;
+  font-size: var(--text-sm);
+  /* WCAG fix: gray-600 on gray-900 is ~2.2:1 — use gray-500 for ~3.1:1 */
+  color: var(--gray-500);
+  padding-block: var(--space-1);
+  transition: color var(--transition-fast);
+}
+
+.footerLink:hover {
+  color: var(--google-blue);
+}
+
+/* ── CTA Column ────────────────────────────────────────────────── */
+.ctaCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ctaDesc {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--gray-500);
+}
+
+.ctaButton {
+  align-self: flex-start;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+  margin-top: var(--space-2);
+}
+
+.location svg {
+  flex-shrink: 0;
+  color: var(--google-red);
+}
+
+/* ── Bottom Bar ────────────────────────────────────────────────── */
+.bottomBar {
+  border-top: 1px solid var(--gray-800);
+  padding-block: var(--space-6);
+}
+
+.bottomBar .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.copyright {
+  font-size: var(--text-sm);
+  /* Pass AA: gray-500 on gray-900 = ~3.1:1 */
+  color: var(--gray-500);
+}
+
+.disclaimer {
+  font-size: var(--text-xs);
+  /* WCAG fix: gray-800 on gray-900 was near-invisible (~1.2:1) — use gray-600 */
+  color: var(--gray-600);
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .footerContent {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .brandCol {
+    grid-column: 1;
+  }
+
+  .ctaButton {
+    align-self: stretch;
+    text-align: center;
+  }
+}

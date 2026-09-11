@@ -1,0 +1,56 @@
+/**
+ * validations.ts — GDG On Campus IIE
+ *
+ * Zod schemas for all form validations.
+ * Shared between client (react-hook-form) and server (API route).
+ */
+import { z } from "zod";
+
+// ---------------------------------------------------------------------------
+// Contact Form Schema
+// ---------------------------------------------------------------------------
+export const contactFormSchema = z.object({
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name must be under 100 characters")
+    .trim(),
+
+  email: z
+    .string()
+    .email("Please enter a valid email address")
+    .max(254, "Email is too long")
+    .toLowerCase()
+    .trim(),
+
+  subject: z
+    .string()
+    .min(4, "Subject must be at least 4 characters")
+    .max(200, "Subject must be under 200 characters")
+    .trim(),
+
+  message: z
+    .string()
+    .min(20, "Message must be at least 20 characters")
+    .max(5000, "Message must be under 5000 characters")
+    .trim(),
+});
+
+export type ContactFormData = z.infer<typeof contactFormSchema>;
+
+// ---------------------------------------------------------------------------
+// API Response types
+// ---------------------------------------------------------------------------
+export interface ApiSuccessResponse {
+  success: true;
+  submissionId: string;
+  message: string;
+}
+
+export interface ApiErrorResponse {
+  success: false;
+  error: string;
+  fieldErrors?: Partial<Record<keyof ContactFormData, string[]>>;
+}
+
+export type ApiResponse = ApiSuccessResponse | ApiErrorResponse;
